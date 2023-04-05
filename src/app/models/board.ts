@@ -1,3 +1,5 @@
+import { CardModel } from "./cardModel";
+import { PlayerModel } from "./playerModel";
 import { TileModel } from "./tileModel";
 
 export interface BoardModel {
@@ -5,7 +7,8 @@ export interface BoardModel {
     tiles2: TileModel[];
     tiles3: TileModel[];
     tiles4: TileModel[];
+    players: PlayerModel[];
 
-    bondCards: BondCardModel[];
-    destinyCards: DestinyCardModel[];
+    bondCards: CardModel[];
+    destinyCards: CardModel[];
 }

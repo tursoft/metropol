@@ -1,1 +1,32 @@
-<p>board works!</p>
+<div class="table">
+    <!-- Top //-->
+    <div class="row-top">
+        <div class="left-part">
+        </div>
+    
+        <div class="right-part">
+            <div class="moneys">
+                <app-money *ngFor="let money of data.players[0].money" [data]="money">
+                </app-money>
+            </div>
+        </div>
+    </div>
+
+    <!-- Center //-->
+    <div class="row-center">
+        <div class="left-part">
+        </div>
+    
+        <div class="right-part">
+        </div>
+    </div>
+
+    <!-- Bottom //-->
+    <div class="row-bottom">
+        <div class="left-part">
+        </div>
+    
+        <div class="right-part">
+        </div>
+    </div>
+</div>

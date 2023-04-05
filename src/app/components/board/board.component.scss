@@ -1,0 +1,59 @@
+.table {
+    display: flex;
+    flex-direction: column;
+
+
+    .row-top {
+        height: 150px;
+        display: flex;
+        flex-direction: row;
+
+        .left-part {
+            flex: 2;
+            background-color: gray;
+        }
+    
+        .right-part {
+            flex: 1;
+            background-color: gray;
+            position: relative;
+        }
+    }
+
+    .row-center {
+        height: 500px;
+        display: flex;
+        flex-direction: row;
+
+        .left-part {
+            flex: 2;
+            background-color: red;
+        }
+    
+        .right-part {
+            flex: 1;
+            background-color: rosybrown;
+        }
+    }
+
+    .row-bottom {
+        height: 150px;
+        display: flex;
+        flex-direction: row;
+
+        .left-part {
+            flex: 2;
+            background-color: gray;
+        }
+    
+        .right-part {
+            flex: 1;
+            background-color: gray;
+        }
+    }
+}
+
+.moneys {
+    display: flex;
+    flex-direction: row;
+}

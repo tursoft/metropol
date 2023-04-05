@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MoneyModel } from 'src/app/models/moneyModel';
 
 @Component({
   selector: 'app-money',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./money.component.scss']
 })
 export class MoneyComponent {
-
+  @Input() data!: MoneyModel;
 }
