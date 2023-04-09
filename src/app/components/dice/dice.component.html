@@ -1,1 +1,57 @@
-<p>dice works!</p>
+<div class="dice number-1" *ngIf="value==1" (click)="clicked.emit()">
+    <span class="dot">
+    </span>
+</div>
+  
+  <div class="dice number-2" *ngIf="value==2" (click)="clicked.emit()">
+    <span class="dot">
+    </span>
+    <span class="dot">
+    </span>
+  </div>
+  
+  <div class="dice number-3" *ngIf="value==3" (click)="clicked.emit()">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  
+  <div class="dice number-4" *ngIf="value==4" (click)="clicked.emit()">
+    <div class="column">
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <div class="column">
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <div class="dice number-5" *ngIf="value==5" (click)="clicked.emit()">
+    <div class="column">
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    
+    <div class="column">
+      <span class="dot"></span>
+    </div>
+    
+    <div class="column">
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <div class="dice number-6" *ngIf="value==6" (click)="clicked.emit()">
+    <div class="column">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <div class="column">
+      <span class="dot"></span>
+      <span class="dot"></span>
+          <span class="dot"></span>
+    </div>
+  </div>

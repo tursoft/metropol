@@ -1,12 +1,12 @@
 import { DeedModel } from "./deedModel";
 import { PlayerModel } from "./playerModel";
 
-export type TileColor = 'lightgreen' | 'brown' | 'red' | 'darkgreen' | 'darkblue' | 'purple' | 'black' | 'lightblue';
+export type TileColor = 'green' | 'lightgreen' | 'brown' | 'red' | 'darkgreen' | 'darkblue' | 'blue' | 'purple' | 'black' | 'lightblue';
 export type TileType = 'land' | 'corp' | 'bond' | 'destiny' | 'fine' | 'jail' | 'start' | 'free-area';
 
 export interface TileModel {
     id: number;
-    text: string;
+    title: string;
     type: TileType;
     group?: string;
     color?: TileColor;

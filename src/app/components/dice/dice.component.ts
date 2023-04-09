@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DiceValueType } from 'src/app/models/diceModel';
 
 @Component({
   selector: 'app-dice',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./dice.component.scss']
 })
 export class DiceComponent {
-
+  @Input() value: DiceValueType = 6;
+  @Output() clicked = new EventEmitter();
 }

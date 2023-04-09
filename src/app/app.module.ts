@@ -11,6 +11,7 @@ import { DiceComponent } from './components/dice/dice.component';
 import { DeedComponent } from './components/deed/deed.component';
 import { MoneyComponent } from './components/money/money.component';
 import { TileComponent } from './components/tile/tile.component';
+import { MoneyListComponent } from './components/money-list/money-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TileComponent } from './components/tile/tile.component';
     DiceComponent,
     DeedComponent,
     MoneyComponent,
-    TileComponent
+    TileComponent,
+    MoneyListComponent
   ],
   imports: [
     BrowserModule,

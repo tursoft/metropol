@@ -1,1 +1,18 @@
-<p>tile works!</p>
+<div [ngClass]="['tile-body', 'rotate-'+rotate, (corner ? 'corner' : '')]">
+    <div class="tile-top"
+         [ngStyle]="{'background-color': data.color}"
+         *ngIf="data.color">
+    </div>
+    
+    <div class="tile-title">
+        {{ data.title }}
+    </div>
+    
+    <div class="tile-icon" *ngIf="data.icon">
+        <img [src]="'/assets/icons/' + data.icon">
+    </div>
+
+    <div class="tile-price" [ngClass]="{'hide_inline': !data.price}">
+        {{ data.price }} TL
+    </div>
+</div>

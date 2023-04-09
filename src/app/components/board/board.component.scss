@@ -4,56 +4,135 @@
 
 
     .row-top {
-        height: 150px;
+        flex: 0 0 150px;
         display: flex;
         flex-direction: row;
 
         .left-part {
-            flex: 2;
+            flex: 1;
             background-color: gray;
         }
     
         .right-part {
-            flex: 1;
+            flex: 0 0 330px;
             background-color: gray;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
     .row-center {
-        height: 500px;
+        flex: 1;
         display: flex;
         flex-direction: row;
 
         .left-part {
-            flex: 2;
+            flex: 0 0 auto;
             background-color: red;
+
+            display: flex;
+            flex-direction: column;
+
+            .tiles-bottom-counter {
+                flex: 1;
+
+                display: flex;
+                flex-direction: row;
+                
+                .tiles-left {
+                    flex: 0 0 auto;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    // app-tile {
+                    //     rotate: 90deg;
+                    // }
+                }
+
+                .tiles-left-counter {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+
+                    .tiles-top {
+                        flex: 0 0 auto;
+                        display: flex;
+                        flex-direction: row;
+                    }
+
+                    .tiles-top-counter {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: row;
+
+                        .tiles-right-counter {
+                            flex: 1;
+                            display: flex;
+                            background-color: red;
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        
+                        .tiles-right {
+                            flex: 0 0 auto;
+                        }
+                    }
+
+                }
+
+            }
+
+            .tiles-bottom {
+                flex: 0 0 auto;
+                display: flex;
+                flex-direction: row-reverse;
+            }
         }
     
         .right-part {
             flex: 1;
             background-color: rosybrown;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
     .row-bottom {
-        height: 150px;
+        flex: 0 0 150px;
         display: flex;
         flex-direction: row;
 
         .left-part {
-            flex: 2;
+            flex: 1;
             background-color: gray;
         }
     
         .right-part {
-            flex: 1;
+            flex: 0 0 330px;
             background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
 
-.moneys {
+.game-title {
+    font-size: 80px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: orange;
+}
+
+.dices {
     display: flex;
     flex-direction: row;
+}
+
+app-dice {
+    cursor: pointer;
 }
