@@ -1,138 +1,262 @@
-.table {
-    display: flex;
-    flex-direction: column;
+$board-width: 1000px;
+$board-height: 800px;
 
-
-    .row-top {
-        flex: 0 0 150px;
+::ng-deep {
+    .table {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 
-        .left-part {
-            flex: 1;
-            background-color: gray;
-        }
-    
-        .right-part {
-            flex: 0 0 330px;
-            background-color: gray;
-            position: relative;
+
+        .row-top {
+            flex: 0 0 150px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+            flex-direction: row;
 
-    .row-center {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-
-        .left-part {
-            flex: 0 0 auto;
-            background-color: red;
-
-            display: flex;
-            flex-direction: column;
-
-            .tiles-bottom-counter {
+            .left-part {
+                flex: 0 0 $board-width;
+                background-color: gray;
+            }
+        
+            .right-part {
                 flex: 1;
-
+                background-color: gray;
+                position: relative;
                 display: flex;
-                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .row-bottom {
+            flex: 0 0 150px;
+            display: flex;
+            flex-direction: row;
+
+            .left-part {
+                flex: 0 0 $board-width;
+                background-color: gray;
+            }
+        
+            .right-part {
+                flex: 1;
+                background-color: gray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .row-center {
+            display: flex;
+            flex-direction: row;
+
+            .right-part {
+                flex: 1;
+                background-color: gray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .left-part {
+                flex: 0 0 $board-width;
+                height: $board-height;
+                position: absolute;
+                background-color: red;
+                border: 1px solid white;
+
+                .app-tile {
+                    width: 110px;
+                    height: 150px;
+                    background-color: orange;
+                    border: 2px solid white;
+                    margin: 0px;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        border: 2px solid black;
+                    }
+                }
+                
+                .tiles-bottom {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    position: relative;
+                    left: 0px;
+                    top: 792px;
+
+                    .app-tile {
+                        &:first-child,
+                        &:last-child {
+                            width: 150px;
+                        }
+
+                        &:first-child {
+                            .tile-body {
+                                padding-top: 10px;
+                            }
+                        }
+
+                        &:last-child {
+                            .tile-body {
+                                padding-top: 30px;
+                                transform: rotate(45deg);
+                            }
+                        }
+                    }
+                }
                 
                 .tiles-left {
-                    flex: 0 0 auto;
-                    display: flex;
-                    flex-direction: column-reverse;
-                    // app-tile {
-                    //     rotate: 90deg;
-                    // }
+                    display: inline;
+                    position: relative;
+                    left: 0px;
+                    
+                    .app-tile {
+                        position: absolute;
+                        left: 20px;
+                        top: -20px;
+                        transform: rotateZ(90deg);
+
+                        &:nth-child(8) {
+                            left: 0px;
+                            top: 0px;
+                            width: 150px;
+                            z-index: 9999;
+                            .tile-body {
+                                padding-top: 30px;
+                                rotate: 45deg;
+                            }
+                        }
+
+                        &:nth-child(7) {
+                            top: 134px;
+                        }
+
+                        &:nth-child(6) {
+                            top: 247px;
+                        }
+
+                        &:nth-child(5) {
+                            top: 360px;
+                        }
+
+                        &:nth-child(4) {
+                            top: 473px;
+                        }
+
+                        &:nth-child(3) {
+                            top: 586px;
+                        }
+
+                        &:nth-child(2) {
+                            top: 699px;
+                        }
+
+                        &:nth-child(1) {
+                            top: 812px;
+                        }
+                    }
                 }
 
-                .tiles-left-counter {
-                    flex: 1;
+                .tiles-top {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
+                    position: relative;
+                    left: 153px;
+                    top: 0px;
+                    // border: 4px solid blue;
 
-                    .tiles-top {
-                        flex: 0 0 auto;
-                        display: flex;
-                        flex-direction: row;
-                    }
-
-                    .tiles-top-counter {
-                        flex: 1;
-                        display: flex;
-                        flex-direction: row;
-
-                        .tiles-right-counter {
-                            flex: 1;
-                            display: flex;
-                            background-color: red;
-                            justify-content: center;
-                            align-items: center;
-                            display: flex;
-                            flex-direction: column;
+                    .app-tile {
+                        &:not(:nth-child(12)) {
+                            transform: rotateZ(180deg);
                         }
+                        &:nth-child(12) {
+                            //position: absolute;
+                            //left: 100px;
+                            //top: 0px;
+                            width: 150px;
+                            height: 150px;
+                            transform: rotateZ(180deg);
+                        }
+                    }
+                }
+                
+                .tiles-right {
+                    display: inline;
+                    position: absolute;
+                    right: 134px;
+                    top: 0px;
+                    
+                    .app-tile {
+                        position: absolute;
                         
-                        .tiles-right {
-                            flex: 0 0 auto;
+                        top: -20px;
+                        transform: rotateZ(270deg);
+
+                        &:nth-child(1) {
+                            top: 134px;
+                        }
+
+                        &:nth-child(2) {
+                            top: 247px;
+                        }
+
+                        &:nth-child(3) {
+                            top: 360px;
+                        }
+
+                        &:nth-child(4) {
+                            top: 473px;
+                        }
+
+                        &:nth-child(5) {
+                            top: 586px;
+                        }
+
+                        &:nth-child(6) {
+                            top: 699px;
+                        }
+
+                        &:nth-child(7) {
+                            top: 812px;
                         }
                     }
-
                 }
-
+        
+                .board-center {
+                    position: absolute;
+                    left: 200px;
+                    top: 200px;
+                }
+                
             }
-
-            .tiles-bottom {
-                flex: 0 0 auto;
-                display: flex;
-                flex-direction: row-reverse;
-            }
-        }
-    
-        .right-part {
-            flex: 1;
-            background-color: rosybrown;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
     }
 
-    .row-bottom {
-        flex: 0 0 150px;
+    .game-title {
+        font-size: 80px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: orange;
+    }
+
+    .dices {
         display: flex;
         flex-direction: row;
-
-        .left-part {
-            flex: 1;
-            background-color: gray;
-        }
-    
-        .right-part {
-            flex: 0 0 330px;
-            background-color: gray;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
     }
-}
 
-.game-title {
-    font-size: 80px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: orange;
-}
+    app-dice {
+        cursor: pointer;
+    }
 
-.dices {
-    display: flex;
-    flex-direction: row;
-}
 
-app-dice {
-    cursor: pointer;
+    // .tiles-bottom {
+    //     @mixin alternating-background {
+    //         @for $i from 1 through length($alternating-colors) {
+    //           &:nth-child(#{length($alternating-colors)}n+#{$i}) {
+    //             background: (nth($alternating-colors, $i));
+    //           }
+    //         }
+    //     }
+    // }
 }

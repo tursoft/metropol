@@ -6,6 +6,7 @@ export type ColorType = 'black' | 'red' | 'blue' | 'white' | 'green' | 'yello
 export interface PlayerModel {
     id: number;
     name: string;
+    initials: string;
     color: ColorType;
     currentTile: TileModel;
     money: MoneyModel[];
