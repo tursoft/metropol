@@ -39,11 +39,15 @@
     </div>
 
     <div class="destiny-cards">
-        <app-card [data]="{ group: 'destiny', id: 0, text: '', type: 'other' }"></app-card>
+        <app-card [data]="destinyCard" 
+                  (click)="cardClicked(destinyCard)">
+        </app-card>
     </div>
 
     <div class="bond-cards">
-        <app-card [data]="{ group: 'bond', id: 0, text: '', type: 'other' }"></app-card>
+        <app-card [data]="bondCard"
+                  (click)="cardClicked(bondCard)">
+        </app-card>
     </div>
 
 </div>

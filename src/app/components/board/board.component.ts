@@ -1,5 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
 import { BoardModel } from 'src/app/models/boardModel';
+import { CardModel } from 'src/app/models/cardModel';
 import { DiceValueType } from 'src/app/models/diceModel';
 import { TileModel } from 'src/app/models/tileModel';
 
@@ -10,6 +11,9 @@ import { TileModel } from 'src/app/models/tileModel';
 })
 export class BoardComponent {
   @HostBinding('class.app-board') app_board: boolean = true;
+
+  destinyCard: CardModel = { group: 'destiny', id: 0, text: '', type: 'other', side: 'front' };
+  bondCard: CardModel = { group: 'bond', id: 0, text: '', type: 'other', side: 'front' };
 
   data: BoardModel = {
     tiles: { 
@@ -143,6 +147,9 @@ export class BoardComponent {
     ]
   }
 
+  cardClicked(card: CardModel) {
+    card.side = (card.side == 'back' ? 'front' : 'back');
+  }
 
   async diceClicked() {
     for(var i =0; i<20; i++) {

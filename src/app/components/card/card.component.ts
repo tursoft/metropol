@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { CardModel } from 'src/app/models/cardModel';
+import { CardModel, CardSide } from 'src/app/models/cardModel';
 
 @Component({
   selector: 'app-card',
@@ -10,12 +10,19 @@ export class CardComponent implements OnInit {
   @Input() data!: CardModel;
 
   @HostBinding('class.app-card') app_card: boolean = true;
+
   @HostBinding('class.destiny') app_destiny: boolean = true;
-  @HostBinding('class.bond') app_bond: boolean = true;
+  @HostBinding('class.bond') app_bond: boolean = false;
+
+  @HostBinding('class.front') app_front: boolean = true;
+  @HostBinding('class.back') app_back: boolean = false;
 
   ngOnInit(): void {
     this.app_destiny = this.data.group == 'destiny';
     this.app_bond = this.data.group == 'bond';
+
+    this.app_front = this.data.side == 'front';
+    this.app_back = this.data.side == 'back';
   }
 
   getCardLogo() {

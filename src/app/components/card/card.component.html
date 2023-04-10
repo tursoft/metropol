@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card-body" *ngIf="data.side=='front'">
     <div class="logo">
         <img [src]="getCardLogo()">
     </div>
@@ -7,4 +7,8 @@
         <div class="title">{{getCardTitle()}}</div>
         <div class="game-name">Metropol</div>
     </div>
+</div>
+
+<div *ngIf="data.side=='back'">
+back
 </div>

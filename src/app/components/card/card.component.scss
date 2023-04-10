@@ -2,57 +2,85 @@
     border-radius: 6px;
     padding: 6px;
     display: flex;
+    width: 200px;
+    height: 100px;
 
-    &.destiny {
-        background-color: orange;
-        .title {
-            color: black;
+    &.front {
+        flex: 1;
+    }
+
+    &.back {
+        flex: 1;
+        background-color: white;
+        color: black;
+        justify-content: center;
+        align-items: center;
+
+        &.destiny {
+            background-color: white;
+        }
+
+        &.bond {
+            background-color: white;
         }
     }
 
-    &.bond {
-        background-color: blue;
-        .title {
-            color: yellow;
-        }
-    }
+    &.front {
+        flex: 1;
 
-    .card-body {
-        border: 1px solid white;
-        border-radius: 6px;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        padding: 16px 8px 16px 8px;
-
-        .logo {
-            flex: 0 0 auto;
-            padding: 4px;
-            img {
-                width: 50px;
-                height: 50px;
-            }
-        }
-
-        .right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-
+        &.destiny {
+            background-color: orange;
             .title {
-                font-size: 16px;
-                font-weight: bold;
-                padding: 4px 14px 4px 4px;
-                text-align: right;
-                text-transform: uppercase;
+                color: black;
             }
-    
-            .game-name {
-                font-size: 12px;
-                color: white;
-                padding: 4px 14px 4px 4px;
-                text-align: right;
+        }
+
+        &.bond {
+            background-color: blue;
+            .title {
+                color: yellow;
+            }
+        }
+
+        .card-body {
+            border: 1px solid white;
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            padding: 16px 8px 16px 8px;
+
+            .logo {
+                flex: 0 0 auto;
+                padding: 4px;
+                img {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+
+            .right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    font-size: 16px;
+                    font-weight: bold;
+                    padding: 4px 14px 4px 4px;
+                    text-align: right;
+                    text-transform: uppercase;
+                }
+        
+                .game-name {
+                    font-size: 12px;
+                    color: white;
+                    padding: 4px 14px 4px 4px;
+                    text-align: right;
+                }
             }
         }
     }
+
+    
 }
