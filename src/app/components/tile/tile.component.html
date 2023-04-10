@@ -1,14 +1,14 @@
 <div [ngClass]="['tile-body', 'rotate-'+rotate, (corner ? 'corner' : '')]">
     <div class="tile-top"
          [ngStyle]="{'background-color': data.color}"
-         *ngIf="data.color">
+         [ngClass]="{'hide_inline': !data.color}">
     </div>
     
     <div class="tile-title">
         {{ data.title }}
     </div>
     
-    <div class="tile-icon" *ngIf="data.icon">
+    <div class="tile-icon" [ngClass]="{'hide_inline': !data.icon}">
         <img [src]="'/assets/icons/' + data.icon">
     </div>
 

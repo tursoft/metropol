@@ -1,72 +1,48 @@
 <div class="table">
-    <!-- Top //-->
-    <div class="row-top">
-        <div class="left-part">
-        </div>
-    
-        <div class="right-part">
-            <!-- <app-money-list [data]="data.players[0].money">
-            </app-money-list> -->
+
+    <div class="tiles-left">
+        <app-tile *ngFor="let tile of data.tiles.left; last as isLast"
+                  [data]="tile" rotate="90" [corner]="isLast"
+                  [players]="getTilePlayers(tile)">
+        </app-tile>
+    </div>
+
+    <div class="tiles-top">
+        <app-tile *ngFor="let tile of data.tiles.top; last as isLast"
+                  [data]="tile" rotate="180" [corner]="isLast"
+                  [players]="getTilePlayers(tile)">
+        </app-tile>
+    </div>
+
+    <div class="tiles-right">
+        <app-tile *ngFor="let tile of data.tiles.right; last as isLast"
+                 [data]="tile" rotate="270" [corner]="isLast"
+                 [players]="getTilePlayers(tile)">
+        </app-tile>
+    </div>
+
+    <div class="tiles-bottom">
+        <app-tile *ngFor="let tile of data.tiles.bottom; first as isFirst; last as isLast"
+                 [data]="tile" rotate="0" [corner]="(isFirst || isLast)"
+                 [players]="getTilePlayers(tile)">
+        </app-tile>
+    </div>
+
+    <div class="board-center">
+        <div class="game-title">METROPOL</div>
+        <div class="dices">
+            <app-dice *ngFor="let dice of data.dices"
+                  [value]="dice.value"
+                  (clicked)="diceClicked()">
+            </app-dice>
         </div>
     </div>
 
-    <!-- Center //-->
-    <div class="row-center">
-        <div class="left-part">
-            <div class="tiles-left">
-                <app-tile *ngFor="let tile of data.tiles.left; last as isLast"
-                          [data]="tile" rotate="90" [corner]="isLast"
-                          [players]="getTilePlayers(tile)">
-                </app-tile>
-            </div>
-
-            <div class="tiles-top">
-                <app-tile *ngFor="let tile of data.tiles.top; last as isLast"
-                          [data]="tile" rotate="180" [corner]="isLast"
-                          [players]="getTilePlayers(tile)">
-                </app-tile>
-            </div>
-
-            <div class="tiles-right">
-                <app-tile *ngFor="let tile of data.tiles.right; last as isLast"
-                         [data]="tile" rotate="270" [corner]="isLast"
-                         [players]="getTilePlayers(tile)">
-                </app-tile>
-            </div>
-
-            <div class="tiles-bottom">
-                <app-tile *ngFor="let tile of data.tiles.bottom; first as isFirst; last as isLast"
-                         [data]="tile" rotate="0" [corner]="(isFirst || isLast)"
-                         [players]="getTilePlayers(tile)">
-                </app-tile>
-            </div>
-
-            <div class="board-center">
-                <div class="game-title">METROPOL</div>
-                <div class="dices">
-                    <app-dice *ngFor="let dice of data.dices"
-                          [value]="dice.value"
-                          (clicked)="diceClicked()">
-                    </app-dice>
-                </div>
-            </div>
-
-        </div>
-    
-        <div class="right-part">
-            <!-- <app-money-list [data]="data.monies">
-            </app-money-list> -->
-        </div>
+    <div class="destiny-cards">
     </div>
 
-    <!-- Bottom //-->
-    <div class="row-bottom">
-        <div class="left-part">
-        </div>
-    
-        <div class="right-part">
-            <!-- <app-money-list [data]="data.players[1].money">
-            </app-money-list> -->
-        </div>
+    <div class="bond-cards">
+        
     </div>
+
 </div>
