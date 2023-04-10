@@ -44,4 +44,12 @@
             align-items: center;
         }
     }
+
+    .players {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 8px;
+    }
 }

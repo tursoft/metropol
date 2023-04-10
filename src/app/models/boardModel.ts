@@ -8,6 +8,7 @@ export interface BoardModel {
     monies: MoneyModel[];
 
     tiles: {
+        all: TileModel[];
         bottom: TileModel[];
         left: TileModel[];
         top: TileModel[];
@@ -15,6 +16,8 @@ export interface BoardModel {
     }
 
     players: PlayerModel[];
+    
+    currentPlayer?: PlayerModel
 
     cards: {
         bondCards: CardModel[];

@@ -8,6 +8,7 @@ export interface PlayerModel {
     name: string;
     initials: string;
     color: ColorType;
-    currentTile: TileModel;
+    playing?: boolean;
+    currentTile?: TileModel;
     money: MoneyModel[];
 }

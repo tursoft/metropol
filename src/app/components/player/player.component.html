@@ -1,1 +1,4 @@
-<div class="player"></div>
+<div [ngClass]="{ 'player':true, 'playing': data.playing }"
+        [ngStyle]="{ 'background': data.color }">
+    {{ data.initials }}
+</div>

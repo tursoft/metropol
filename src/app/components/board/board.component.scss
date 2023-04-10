@@ -217,3 +217,31 @@ $board-height: 1100px;
         }
     }
 }
+
+.player-list {
+    position: absolute;
+    border: 1px solid white;
+    padding: 10px;
+    right: 190px;
+    bottom: 180px;
+    color: lightgray;
+    width: 250px;
+
+    .player {
+        display: flex;
+        flex-direction: row;
+
+        .player-initials {
+            font-weight: bold;
+            flex: 0 0 50px;
+        }
+
+        .player-name {
+            flex: 1;
+        }
+
+        &.playing {
+            color: yellow;
+        }
+    }
+}

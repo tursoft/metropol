@@ -13,5 +13,7 @@ export interface TileModel {
     price?: number;
     icon?: string;
     deed?: DeedModel; 
-    owner?: PlayerModel;
+
+    ownerPlayer?: PlayerModel;
+    players: PlayerModel[];
 }

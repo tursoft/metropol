@@ -10,7 +10,6 @@ export type TileRotateType = '0' | '90' | '180' | '270';
 })
 export class TileComponent {
   @Input() data!: TileModel;
-  @Input() players: PlayerModel[] = [];
 
   @HostBinding('class.app-tile') app_tile: boolean = true;
 

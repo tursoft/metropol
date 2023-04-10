@@ -15,4 +15,12 @@
     <div class="tile-price" [ngClass]="{'hide_inline': !data.price}">
         {{ data.price }} TL
     </div>
+    
+
+    <div class="players">
+        <app-player
+             *ngFor="let player of data.players" 
+             [data]="player">
+        </app-player>
+    </div>
 </div>

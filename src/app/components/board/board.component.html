@@ -2,29 +2,25 @@
 
     <div class="tiles-left">
         <app-tile *ngFor="let tile of data.tiles.left"
-                  [data]="tile"
-                  [players]="getTilePlayers(tile)">
+                  [data]="tile">
         </app-tile>
     </div>
 
     <div class="tiles-top">
         <app-tile *ngFor="let tile of data.tiles.top"
-                  [data]="tile"
-                  [players]="getTilePlayers(tile)">
+                  [data]="tile">
         </app-tile>
     </div>
 
     <div class="tiles-right">
         <app-tile *ngFor="let tile of data.tiles.right"
-                 [data]="tile"
-                 [players]="getTilePlayers(tile)">
+                 [data]="tile">
         </app-tile>
     </div>
 
     <div class="tiles-bottom">
         <app-tile *ngFor="let tile of data.tiles.bottom"
-                 [data]="tile"
-                 [players]="getTilePlayers(tile)">
+                 [data]="tile">
         </app-tile>
     </div>
 
@@ -39,15 +35,22 @@
     </div>
 
     <div class="destiny-cards">
-        <app-card [data]="destinyCard" 
-                  (click)="cardClicked(destinyCard)">
+        <app-card [data]="destinyCard" #destinyCardComp
+                  (click)="cardClicked(destinyCardComp)">
         </app-card>
     </div>
 
     <div class="bond-cards">
-        <app-card [data]="bondCard"
-                  (click)="cardClicked(bondCard)">
+        <app-card [data]="bondCard" #bondCardComp
+                  (click)="cardClicked(bondCardComp)">
         </app-card>
     </div>
 
+    <div class="player-list">
+        <div [ngClass]="{ 'player': true, 'playing': player.playing }"
+             *ngFor="let player of data.players">
+             <span class="player-initials">{{ player.initials }}</span>
+             <span class="player-name">{{ player.name }}</span>
+        </div>
+    </div>
 </div>
