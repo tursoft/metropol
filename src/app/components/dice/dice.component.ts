@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { DiceValueType } from 'src/app/models/diceModel';
 
 @Component({
@@ -9,4 +9,6 @@ import { DiceValueType } from 'src/app/models/diceModel';
 export class DiceComponent {
   @Input() value: DiceValueType = 6;
   @Output() clicked = new EventEmitter();
+
+  @HostBinding('class.app-dice') app_dice: boolean = true;
 }

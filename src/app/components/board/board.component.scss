@@ -196,7 +196,7 @@ $board-height: 1100px;
             position: absolute;
             top: 250px;
             right: 250px;
-            border: 2px solid white;
+            // border: 2px solid white;
             width: 200px;
             height: 120px;
             border-radius: 8px;
@@ -206,10 +206,14 @@ $board-height: 1100px;
             position: absolute;
             bottom: 250px;
             left: 250px;
-            border: 2px solid white;
+            // border: 2px solid white;
             width: 200px;
             height: 120px;
             border-radius: 8px;
+        }
+
+        .app-card {
+            cursor: pointer;
         }
     }
 }

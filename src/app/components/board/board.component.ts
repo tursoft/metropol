@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { BoardModel } from 'src/app/models/boardModel';
 import { DiceValueType } from 'src/app/models/diceModel';
 import { TileModel } from 'src/app/models/tileModel';
@@ -9,6 +9,8 @@ import { TileModel } from 'src/app/models/tileModel';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
+  @HostBinding('class.app-board') app_board: boolean = true;
+
   data: BoardModel = {
     tiles: { 
       bottom: [

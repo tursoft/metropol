@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { PlayerModel } from 'src/app/models/playerModel';
 
 @Component({
@@ -8,4 +8,6 @@ import { PlayerModel } from 'src/app/models/playerModel';
 })
 export class PlayerComponent {
   @Input() data!: PlayerModel;
+
+  @HostBinding('class.app-player') app_player: boolean = true;
 }

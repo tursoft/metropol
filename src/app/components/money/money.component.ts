@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { MoneyModel } from 'src/app/models/moneyModel';
 
 @Component({
@@ -8,4 +8,6 @@ import { MoneyModel } from 'src/app/models/moneyModel';
 })
 export class MoneyComponent {
   @Input() data!: MoneyModel;
+
+  @HostBinding('class.app-money') app_money: boolean = true;
 }

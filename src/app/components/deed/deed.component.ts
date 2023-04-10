@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-deed',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./deed.component.scss']
 })
 export class DeedComponent {
-
+  @HostBinding('class.app-deed') app_deed: boolean = true;
 }
