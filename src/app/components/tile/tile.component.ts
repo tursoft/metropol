@@ -12,6 +12,8 @@ export class TileComponent {
   @Input() data!: TileModel;
 
   @HostBinding('class.app-tile') app_tile: boolean = true;
+  @HostBinding('class.has-player') get has_player() { return (this.data?.players?.length ?? 0)>0 }
+  @HostBinding('class.has-corner') get corner() { return this.data.corner ?? false }
 
   constructor() {
     

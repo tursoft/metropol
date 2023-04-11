@@ -15,8 +15,6 @@ $board-height: 1100px;
         .app-tile {
             width: 110px;
             height: 150px;
-            background-color: orange;
-            border: 2px solid white;
             margin: 0px;
             cursor: pointer;
 
@@ -186,7 +184,7 @@ $board-height: 1100px;
                 justify-content: center;
                 align-items: center;
             }
-        
+            
             .message1{
                 margin-top: 15px;
                 text-align: center;
@@ -207,7 +205,6 @@ $board-height: 1100px;
             position: absolute;
             top: 250px;
             right: 250px;
-            // border: 2px solid white;
             width: 200px;
             height: 120px;
             border-radius: 8px;

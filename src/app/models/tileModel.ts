@@ -8,6 +8,7 @@ export interface TileModel {
     id: number;
     title: string;
     type: TileType;
+    corner?: boolean;
     group?: string;
     color?: TileColor;
     price?: number;

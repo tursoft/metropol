@@ -1,9 +1,9 @@
 import { Component, HostBinding } from '@angular/core';
 import { BoardModel } from 'src/app/models/boardModel';
 import { CardModel } from 'src/app/models/cardModel';
-import { DiceValueType } from 'src/app/models/diceModel';
+import { DiceState, DiceValueType } from 'src/app/models/diceModel';
 import { PlayerModel } from 'src/app/models/playerModel';
-import { TileModel } from 'src/app/models/tileModel';
+import { TileModel, TileType } from 'src/app/models/tileModel';
 import { CardComponent } from '../card/card.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class BoardComponent {
     tiles: { 
       all: [],
       bottom: [
-        { id: 1, title: 'Start', type: 'start', icon: 'start.png', players: [] },
+        { id: 1, title: 'Start', type: 'start', icon: 'start.png', players: [], corner: true },
         { id: 2, title: 'Erzurum', type: 'land', 'color': 'lightgreen', 'group': 'grup1', price: 6000, players: []  },
         { id: 3, title: 'Hazine Bonosu', type: 'bond', icon: 'bond.png', players: []  },
         { id: 4, title: 'Ağrı', type: 'land', 'color': 'lightgreen', 'group': 'grup1', price: 6000, players: []  },
@@ -33,7 +33,7 @@ export class BoardComponent {
         { id: 10, title: 'Malatya', type: 'land', 'color': 'brown', 'group': 'grup2', price: 12000, players: []  },
         { id: 11, title: 'Türk Telekom', type: 'corp', price: 20000, icon: 'turktelekom.png', players: []  },
         { id: 12, title: 'Gaziantep', type: 'land', 'color': 'red', 'group': 'grup3', price: 14000, players: [] },
-        { id: 13, title: 'Kader Çarkı', type: 'destiny', icon: 'destiny.png', players: []  },
+        { id: 13, title: 'Kader Çarkı', type: 'destiny', icon: 'destiny.png', players: [], corner: true  },
       ],
 
       left: [
@@ -44,7 +44,7 @@ export class BoardComponent {
         { id: 18, title: 'Hazine Bonosu', type: 'bond', icon: 'bond.png', players: []  },
         { id: 19, title: 'Manisa', type: 'land', 'color': 'green', 'group': 'grup4', price: 18000, players: []  },
         { id: 20, title: 'Muğla', type: 'land', 'color': 'green', 'group': 'grup4', price: 20000, players: []  },
-        { id: 21, title: 'Serbest Bölge', type: 'free-area', icon: 'passport.png', players: []  },
+        { id: 21, title: 'Serbest Bölge', type: 'free-area', icon: 'passport.png', players: [], corner: true  },
       ],
 
       top: [
@@ -59,7 +59,7 @@ export class BoardComponent {
         { id: 30, title: 'İzmir', type: 'land', 'color': 'purple', 'group': 'grup6', price: 28000, players: []  },
         { id: 31, title: 'Konya', type: 'land', 'color': 'black', 'group': 'grup7', price: 30000, players: []  },
         { id: 32, title: 'Eskişehir', type: 'land', 'color': 'black', 'group': 'grup7', price: 30000, players: []  },
-        { id: 33, title: 'Hapishane', type: 'jail', icon: 'jail.png', players: []  },
+        { id: 33, title: 'Hapishane', type: 'jail', icon: 'jail.png', players: [], corner: true },
       ],
       
       right: [
@@ -90,7 +90,7 @@ export class BoardComponent {
         id: 1,
         color: 'black',
         name: 'Mehmet Çınar',
-        initials: 'MÇT',
+        initials: 'MÇ',
         money: [
           { color: 'darkblue', value: 10000, count: 3 },
           { color: 'purple', value: 2000, count: 5 },
@@ -123,6 +123,32 @@ export class BoardComponent {
           { color: 'lightblue', value: 5000, count: 3 },
           { color: 'green', value: 50000, count: 1 },
         ]
+      },
+
+      {
+        id: 4,
+        color: 'purple',
+        name: 'Özlem Turşak',
+        initials: 'ÖT',
+        money: [
+          { color: 'darkblue', value: 10000, count: 1 },
+          { color: 'purple', value: 2000, count: 2 },
+          { color: 'lightblue', value: 5000, count: 3 },
+          { color: 'green', value: 50000, count: 1 },
+        ]
+      },
+
+      {
+        id: 5,
+        color: 'yellow',
+        name: 'Bekir Alp',
+        initials: 'BA',
+        money: [
+          { color: 'darkblue', value: 10000, count: 1 },
+          { color: 'purple', value: 2000, count: 2 },
+          { color: 'lightblue', value: 5000, count: 3 },
+          { color: 'green', value: 50000, count: 1 },
+        ]
       }
     ],
 
@@ -134,23 +160,33 @@ export class BoardComponent {
     ]
   }
 
+  diceState: DiceState = 'normal';
   message1: string = 'Click dices to roll';
   message2: string = '';
+
   constructor() {
+    this.initData();
+  }
+
+  initData() {
     const { tiles } = this.data;
+
     // init
     tiles.all=tiles.bottom.concat(tiles.left).concat(tiles.top).concat(tiles.right);
 
+    // set initial player
     this.data.currentPlayer = this.data.players[0];
     this.data.currentPlayer.playing=true;
 
-    const tileStart = tiles.all.find(p => p.id == 1);
+    // 
+    const tileStart = this.getTileByType('start');
     for(const player of this.data.players) {
-      player.currentTile =tileStart;
+      this.movePlayerToTile(player, tileStart);
     }
+  }
 
-    // update
-    this.updateData();
+  getTileByType(type: TileType) {
+    return this.data.tiles.all.find(p => p.type == type) as TileModel;
   }
 
   cardClicked(comp: CardComponent) {
@@ -160,25 +196,42 @@ export class BoardComponent {
   }
 
   async diceClicked() {
+
+    if (this.diceState != 'normal')
+      return;
+
+    // randomly set dice value for all dices on board (try 20 times)
+    this.diceState = 'rolling';
     this.message1 = 'dices are rolling, please wait...'
+    let sleepMs = 2.88;
     for(var i =0; i<20; i++) {
+      sleepMs = sleepMs * 1.25;
       for(var dice of this.data.dices) {
+        dice.value = await this.getRandomDiceValue(sleepMs);
         this.message2 = this.getDiceTotals().toString();
       }
     }
 
     // roll dice
+    const tileCount = this.getDiceTotals();
     this.message1 = 'Dice total is ' + tileCount;
 
+    this.diceState = 'disabled';
     await this.movePlayer(tileCount);
+    this.diceState = 'normal';
     this.message1 = 'Click dices to roll again...';
+    // this.message2 = '';
+  }
+
+  getDiceTotals() {
+    return this.data.dices.reduce((t, d) => { return t + d.value; }, 0);
   }
 
   async movePlayer(tileCount: number) {
     const { currentPlayer: player } = this.data;
     if (!player) 
       return;
-
+    
     // move player
     const currentTile = player?.currentTile!;
     let nextTile = currentTile;
@@ -188,10 +241,15 @@ export class BoardComponent {
       this.movePlayerToTile(player, nextTile);
       await this.sleep(500);
     }
-    player.playing = false;
 
+    // player stopped
+    if (nextTile.type == 'free-area') {
+      const tileStart = this.getTileByType('start');
+      this.movePlayerToTile(player, tileStart);
+    }
 
     // switch to next player
+    player.playing = false;
     const playerIndex = this.data.players.indexOf(player);
     const nextPlayerIndex = (playerIndex + 1) % this.data.players.length;
     const nextPlayer = this.data.players[nextPlayerIndex];
@@ -200,8 +258,10 @@ export class BoardComponent {
   }
 
   movePlayerToTile(player: PlayerModel, nextTile: TileModel) {
-    let currentTile = player.currentTile!;
-    currentTile.players.splice(currentTile.players.indexOf(player),1);
+    let currentTile = player.currentTile;
+    if (currentTile) {
+      currentTile.players.splice(currentTile.players.indexOf(player),1);
+    }
 
     player.currentTile = nextTile;
     nextTile.players.push(player);
@@ -215,8 +275,8 @@ export class BoardComponent {
     return nextTile;
   }
 
-  async getRandomDiceValue() {
-    await this.sleep(50);
+  async getRandomDiceValue(sleepMs: number) {
+    await this.sleep(sleepMs);
     const value = (Math.round((Math.random() * 5)) + 1) as DiceValueType;
     console.log('value:', value);
     return value;
@@ -229,11 +289,5 @@ export class BoardComponent {
 
   getTilePlayers(tile: TileModel) {
     return this.data.players.filter(p => p.currentTile?.id == tile.id);
-  }
-
-  updateData() {
-    for(const tile of this.data.tiles.all) {
-      tile.players = this.getTilePlayers(tile);
-    }
   }
 }
