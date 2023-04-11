@@ -187,8 +187,19 @@ $board-height: 1100px;
                 align-items: center;
             }
         
-            app-dice {
-                cursor: pointer;
+            .message1{
+                margin-top: 15px;
+                text-align: center;
+                color: wheat;
+                font-size: 18px;
+            }
+
+            .message2{
+                text-align: center;
+                color: orange;
+                font-weight: bolder;
+                font-size: 20px;
+                text-transform: uppercase; 
             }
         }
 

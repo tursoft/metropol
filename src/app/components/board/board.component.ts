@@ -134,6 +134,8 @@ export class BoardComponent {
     ]
   }
 
+  message1: string = 'Click dices to roll';
+  message2: string = '';
   constructor() {
     const { tiles } = this.data;
     // init
@@ -158,16 +160,18 @@ export class BoardComponent {
   }
 
   async diceClicked() {
+    this.message1 = 'dices are rolling, please wait...'
     for(var i =0; i<20; i++) {
       for(var dice of this.data.dices) {
-        dice.value = await this.getRandomDiceValue();
+        this.message2 = this.getDiceTotals().toString();
       }
     }
 
     // roll dice
-    const tileCount = this.data.dices.reduce((t, d) => { return t + d.value; }, 0);
+    this.message1 = 'Dice total is ' + tileCount;
 
     await this.movePlayer(tileCount);
+    this.message1 = 'Click dices to roll again...';
   }
 
   async movePlayer(tileCount: number) {
@@ -180,6 +184,7 @@ export class BoardComponent {
     let nextTile = currentTile;
     for(let i=0;i<tileCount;i++) {
       nextTile = this.getNextTile(nextTile);
+      this.message2 = nextTile.title;
       this.movePlayerToTile(player, nextTile);
       await this.sleep(500);
     }

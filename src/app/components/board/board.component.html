@@ -25,12 +25,24 @@
     </div>
 
     <div class="board-center">
-        <div class="game-title">METROPOL</div>
+        <div class="game-title">
+            METROPOL
+        </div>
         <div class="dices">
-            <app-dice *ngFor="let dice of data.dices"
+            <app-dice
+                  *ngFor="let dice of data.dices"
                   [value]="dice.value"
+                  [state]="diceState"
                   (clicked)="diceClicked()">
             </app-dice>
+        </div>
+        
+        <div class="message1">
+            {{ message1 }}
+        </div>
+
+        <div class="message2">
+            {{ message2 }}
         </div>
     </div>
 
