@@ -9,7 +9,7 @@
     </div>
     
     <div class="tile-icon" [ngClass]="{'hide_inline': !data.icon}">
-        <img [src]="'/assets/icons/' + data.icon">
+        <img [src]="'assets/icons/' + data.icon">
     </div>
 
     <div class="tile-price" [ngClass]="{'hide_inline': data.type=='start' || !data.price}">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="current-tile" *ngIf="!hidePlayers">
-        <img src="/assets/arrow-down.png">
+        <img src="assets/arrow-down.png">
     </div>
 
     <div class="players" *ngIf="!hidePlayers">
