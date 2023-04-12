@@ -42,7 +42,7 @@ export class CardComponent extends BaseComponent implements OnInit {
   }
 
   getCardLogo() {
-    return '/assets/icons/' + this.data.group + '.png';
+    return 'assets/icons/' + this.data.group + '.png';
   }
 
   getCardTitle() {
