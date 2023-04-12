@@ -1,0 +1,63 @@
+:host {
+    border-top: 3px solid orange;
+    border-bottom: 1px solid orange;
+    padding: 15px 10px 15px 10px;
+    color: lightgray;
+    width: 500px;
+
+    .player {
+        display: flex;
+        flex-direction: row;
+        color: orange;
+        padding: 4px 8px;
+
+        &.playing {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: red;
+            border-radius: 4px;
+        }
+
+        .player-no {
+            font-weight: bold;
+            flex: 0 0 20px;
+        }
+
+        .player-initials {
+            font-weight: bold;
+            flex: 0 0 50px;
+        }
+
+        .player-name {
+            flex: 1;
+        }
+
+        .player-money {
+            font-weight: bold;
+            flex: 0 0 70px;
+            white-space: nowrap;
+        }
+
+        .player-money-change {
+            flex: 0 0 90px;
+            visibility: visible;
+            white-space: nowrap;
+            padding-left: 10px;
+            font-size: 14px;
+            text-align: right;
+
+            .money-positive {
+                color: green;
+            }
+        }
+
+        .money-zero {
+            visibility: hidden;
+            color: white;
+        }
+
+        .money-negative {
+            color: black;
+        }
+    }
+}

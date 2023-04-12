@@ -10,7 +10,9 @@
     margin: 0px 6px 0px 6px;
 
     border: 3px black solid;
-    color: lightgray;
+    color: black;
+
+    filter: drop-shadow(0 0 0.10rem black);
 
     &.playing {
         color: yellow;

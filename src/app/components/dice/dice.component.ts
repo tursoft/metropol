@@ -8,12 +8,12 @@ import { DiceState, DiceValueType } from 'src/app/models/diceModel';
 })
 export class DiceComponent {
   @Input() value: DiceValueType = 6;
-  @Input() state: DiceState = 'normal';
+  @Input() state: DiceState = 'ready';
   @Output() clicked = new EventEmitter();
 
   @HostBinding('class.app-dice') app_dice: boolean = true;
-  
-  @HostBinding('class.normal') get normal() { return this.state == 'normal'; }
+
+  @HostBinding('class.ready') get normal() { return this.state == 'ready'; }
   @HostBinding('class.rolling') get rolling() { return this.state == 'rolling'; }
   @HostBinding('class.disabled') get disabled() { return this.state == 'disabled'; }
 }

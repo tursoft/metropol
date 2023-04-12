@@ -1,0 +1,11 @@
+<div class="message"
+     [innerHtml]="data.message">
+</div>
+
+<div class="buttons">
+    <div class="button" 
+         *ngFor="let button of data.buttons"
+         (click)="onClick(button)">
+        {{ button.text }}
+    </div>
+</div>

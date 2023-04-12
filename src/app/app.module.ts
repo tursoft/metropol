@@ -8,9 +8,9 @@ import { PlayerComponent } from './components/player/player.component';
 import { CardComponent } from './components/card/card.component';
 import { DiceComponent } from './components/dice/dice.component';
 import { DeedComponent } from './components/deed/deed.component';
-import { MoneyComponent } from './components/money/money.component';
 import { TileComponent } from './components/tile/tile.component';
-import { MoneyListComponent } from './components/money-list/money-list.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
+import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +20,9 @@ import { MoneyListComponent } from './components/money-list/money-list.component
     CardComponent,
     DiceComponent,
     DeedComponent,
-    MoneyComponent,
     TileComponent,
-    MoneyListComponent
+    PlayerListComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,

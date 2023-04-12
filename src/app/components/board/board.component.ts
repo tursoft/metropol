@@ -1,6 +1,8 @@
 import { Component, HostBinding } from '@angular/core';
-import { BoardModel } from 'src/app/models/boardModel';
+import { lastValueFrom, Subject } from 'rxjs';
+import { BoardModel, DialogType } from 'src/app/models/boardModel';
 import { CardModel } from 'src/app/models/cardModel';
+import { ButtonModel, DialogBoxModel } from 'src/app/models/dialogBoxModel';
 import { DiceState, DiceValueType } from 'src/app/models/diceModel';
 import { PlayerModel } from 'src/app/models/playerModel';
 import { TileModel, TileType } from 'src/app/models/tileModel';
@@ -18,15 +20,17 @@ export class BoardComponent {
   bondCard: CardModel = { group: 'bond', id: 0, text: '', type: 'other', side: 'front' };
 
   data: BoardModel = {
+    state : 'ready',
+  
     tiles: { 
       all: [],
       bottom: [
-        { id: 1, title: 'Start', type: 'start', icon: 'start.png', players: [], corner: true },
-        { id: 2, title: 'Erzurum', type: 'land', 'color': 'lightgreen', 'group': 'grup1', price: 6000, players: []  },
+        { id: 1, title: 'Start', type: 'start', icon: 'start.png', players: [], corner: true, price: 20000 },
+        { id: 2, title: 'Erzurum', type: 'land', 'color': 'teal', 'group': 'grup1', price: 6000, players: []  },
         { id: 3, title: 'Hazine Bonosu', type: 'bond', icon: 'bond.png', players: []  },
-        { id: 4, title: 'Ağrı', type: 'land', 'color': 'lightgreen', 'group': 'grup1', price: 6000, players: []  },
-        { id: 5, title: 'Kars', type: 'land', 'color': 'lightgreen', 'group': 'grup1', price: 10000, players: []  },
-        { id: 6, title: 'Stopaj Vergisi', type: 'fine', icon: 'tax.png', players: []  },
+        { id: 4, title: 'Ağrı', type: 'land', 'color': 'teal', 'group': 'grup1', price: 6000, players: []  },
+        { id: 5, title: 'Kars', type: 'land', 'color': 'teal', 'group': 'grup1', price: 10000, players: []  },
+        { id: 6, title: 'Stopaj Vergisi', type: 'fine', icon: 'tax.png', players: [], price: 20000 },
         { id: 7, title: 'Atatürk Barajı', type: 'corp', price: 20000, icon: 'dam.png', players: []  },
         { id: 8, title: 'Diyarbakır', type: 'land', 'color': 'brown', 'group': 'grup2', price: 10000, players: []  },
         { id: 9, title: 'Şanlıurfa', type: 'land', 'color': 'brown', 'group': 'grup2', price: 10000, players: []  },
@@ -68,7 +72,7 @@ export class BoardComponent {
         { id: 36, title: 'TCDD', type: 'corp', price: 20000, icon: 'tcdd.png', players: []  },
         { id: 37, title: 'Kader Çarkı', type: 'destiny', icon: 'destiny.png', players: []  },
         { id: 38, title: 'Kocaeli', type: 'land', 'color': 'blue', 'group': 'grup8', price: 35000, players: []  },
-        { id: 39, title: 'Peşin Vergini Öde', type: 'fine', icon: 'tax.png', players: []  },
+        { id: 39, title: 'Peşin Vergini Öde', type: 'fine', icon: 'tax.png', players: [], price: 10000 },
         { id: 40, title: 'İstanbul', type: 'land', 'color': 'blue', 'group': 'grup8', price: 40000, players: []  },
       ]
     },
@@ -77,39 +81,22 @@ export class BoardComponent {
       bondCards: [],
       destinyCards: [],
     },
-
-    monies: [
-      { color: 'darkblue', value: 10000, count: 10 },
-      { color: 'purple', value: 2000, count: 50 },
-      { color: 'lightblue', value: 5000, count: 40 },
-      { color: 'green', value: 50000, count: 20 },
-    ],
   
     players: [
       {
         id: 1,
-        color: 'black',
+        color: 'orange',
         name: 'Mehmet Çınar',
         initials: 'MÇ',
-        money: [
-          { color: 'darkblue', value: 10000, count: 3 },
-          { color: 'purple', value: 2000, count: 5 },
-          { color: 'lightblue', value: 5000, count: 3 },
-          { color: 'green', value: 50000, count: 2 },
-        ]
+        money: 250000
       },
 
       {
         id: 2,
-        color: 'red',
+        color: 'darkTurquoise',
         name: 'Muhammet Turşak',
         initials: 'MT',
-        money: [
-          { color: 'darkblue', value: 10000, count: 1 },
-          { color: 'purple', value: 2000, count: 2 },
-          { color: 'lightblue', value: 5000, count: 3 },
-          { color: 'green', value: 50000, count: 1 },
-        ]
+        money: 250000
       },
 
       {
@@ -117,38 +104,23 @@ export class BoardComponent {
         color: 'green',
         name: 'Yağız Burak',
         initials: 'YB',
-        money: [
-          { color: 'darkblue', value: 10000, count: 1 },
-          { color: 'purple', value: 2000, count: 2 },
-          { color: 'lightblue', value: 5000, count: 3 },
-          { color: 'green', value: 50000, count: 1 },
-        ]
+        money: 250000
       },
 
       {
         id: 4,
-        color: 'purple',
+        color: 'magenta',
         name: 'Özlem Turşak',
         initials: 'ÖT',
-        money: [
-          { color: 'darkblue', value: 10000, count: 1 },
-          { color: 'purple', value: 2000, count: 2 },
-          { color: 'lightblue', value: 5000, count: 3 },
-          { color: 'green', value: 50000, count: 1 },
-        ]
+        money: 250000
       },
 
       {
         id: 5,
-        color: 'yellow',
+        color: 'darkKhaki',
         name: 'Bekir Alp',
         initials: 'BA',
-        money: [
-          { color: 'darkblue', value: 10000, count: 1 },
-          { color: 'purple', value: 2000, count: 2 },
-          { color: 'lightblue', value: 5000, count: 3 },
-          { color: 'green', value: 50000, count: 1 },
-        ]
+        money: 250000
       }
     ],
 
@@ -160,9 +132,20 @@ export class BoardComponent {
     ]
   }
 
-  diceState: DiceState = 'normal';
+  dialogData?: DialogBoxModel;
+
+  get diceState(): DiceState {
+    switch(this.data.state) {
+      case 'ready': return 'ready';
+      case 'dice-rolling': return 'rolling';
+      default: return 'disabled';
+    }
+  }
+
   message1: string = 'Click dices to roll';
   message2: string = '';
+
+  lastTile?: TileModel;
 
   constructor() {
     this.initData();
@@ -174,19 +157,24 @@ export class BoardComponent {
     // init
     tiles.all=tiles.bottom.concat(tiles.left).concat(tiles.top).concat(tiles.right);
 
+    // move all players to start
+    const tileStart = this.getTileByType('start');
+    for(const player of this.data.players) {
+      this.movePlayerToTile(player, tileStart, false, true);
+    }
+
     // set initial player
     this.data.currentPlayer = this.data.players[0];
     this.data.currentPlayer.playing=true;
-
-    // 
-    const tileStart = this.getTileByType('start');
-    for(const player of this.data.players) {
-      this.movePlayerToTile(player, tileStart);
-    }
+    this.lastTile = this.data.currentPlayer.currentTile;
   }
 
   getTileByType(type: TileType) {
     return this.data.tiles.all.find(p => p.type == type) as TileModel;
+  }
+
+  getDiceTotals() {
+    return this.data.dices.reduce((t, d) => { return t + d.value; }, 0);
   }
 
   cardClicked(comp: CardComponent) {
@@ -197,18 +185,18 @@ export class BoardComponent {
 
   async diceClicked() {
 
-    if (this.diceState != 'normal')
+    if (this.diceState != 'ready')
       return;
 
     // randomly set dice value for all dices on board (try 20 times)
-    this.diceState = 'rolling';
-    this.message1 = 'dices are rolling, please wait...'
+    this.data.state = 'dice-rolling';
+    this.message1 = 'Dices are rolling, please wait...'
     let sleepMs = 2.88;
     for(var i =0; i<20; i++) {
       sleepMs = sleepMs * 1.25;
       for(var dice of this.data.dices) {
         dice.value = await this.getRandomDiceValue(sleepMs);
-        this.message2 = this.getDiceTotals().toString();
+        this.message2 = 'Dice Total: ' + this.getDiceTotals().toString();
       }
     }
 
@@ -216,15 +204,10 @@ export class BoardComponent {
     const tileCount = this.getDiceTotals();
     this.message1 = 'Dice total is ' + tileCount;
 
-    this.diceState = 'disabled';
+    this.data.state = 'moving';
     await this.movePlayer(tileCount);
-    this.diceState = 'normal';
+    this.data.state = 'ready';
     this.message1 = 'Click dices to roll again...';
-    // this.message2 = '';
-  }
-
-  getDiceTotals() {
-    return this.data.dices.reduce((t, d) => { return t + d.value; }, 0);
   }
 
   async movePlayer(tileCount: number) {
@@ -238,14 +221,15 @@ export class BoardComponent {
     for(let i=0;i<tileCount;i++) {
       nextTile = this.getNextTile(nextTile);
       this.message2 = nextTile.title;
-      this.movePlayerToTile(player, nextTile);
-      await this.sleep(500);
+      const isFinal = (i == (tileCount-1));
+      await this.movePlayerToTile(player, nextTile, isFinal, false);
+      await this.sleep(300);
     }
 
     // player stopped
     if (nextTile.type == 'free-area') {
       const tileStart = this.getTileByType('start');
-      this.movePlayerToTile(player, tileStart);
+      await this.movePlayerToTile(player, tileStart, true, false);
     }
 
     // switch to next player
@@ -255,16 +239,94 @@ export class BoardComponent {
     const nextPlayer = this.data.players[nextPlayerIndex];
     this.data.currentPlayer = nextPlayer;
     nextPlayer.playing = true;
+
+    this.lastTile = nextPlayer.currentTile;
   }
 
-  movePlayerToTile(player: PlayerModel, nextTile: TileModel) {
+  async movePlayerToTile(player: PlayerModel, tile: TileModel, isFinal: boolean, isInitial: boolean) {
     let currentTile = player.currentTile;
     if (currentTile) {
       currentTile.players.splice(currentTile.players.indexOf(player),1);
     }
 
-    player.currentTile = nextTile;
-    nextTile.players.push(player);
+    player.currentTile = tile;
+    tile.players.push(player);
+
+    // handle start pass
+    if (!isInitial) {
+      this.lastTile = tile;
+      if(tile.type == 'start') {
+        const bonus = (tile.price ?? 0);
+        this.changePlayerMoney(player, bonus);
+        this.message1 = 'You get ' + bonus + ' TL since you passed START';
+      }
+    }
+
+    // handle rules
+    if (isFinal) {
+      switch(tile.type) {
+        case 'fine':
+          const fine = (tile.price ?? 0);
+          this.changePlayerMoney(player, -1 * fine);
+          this.message1 = 'You paid ' + fine + ' TL FINE!';
+          break;
+        
+        case 'bond': 
+          this.message2 = 'Pick a BOND CARD!';
+          break;
+
+        case 'destiny':
+          this.message2 = 'Pick a DESTINY CARD!';
+          break;
+        
+        case 'corp':
+        case 'land': {
+          // pay to owner
+          if (tile.ownerPlayer) {
+            const price = tile.price ?? 0;
+            this.message2 = 'Paid '+ price +' TL to owner ' + tile.ownerPlayer.name;
+            this.changePlayerMoney(player, -1 * price);
+            this.changePlayerMoney(tile.ownerPlayer, price);
+
+          } else {
+          
+            // ask to buy
+            let dialogType: DialogType = 'land-buy-dialog';
+            let message = 'Do you buy <br/><strong>' + tile.title +'</strong>?';
+            if (tile.type == 'corp') {
+              dialogType = 'corp-buy-dialog';
+            }
+
+            const respone = await this.showDialog({
+                message,
+                buttons: [
+                  { code: 'y', text: 'Yes' },
+                  { code: 'n', text: 'No' }
+                ],
+                onClick: new Subject<ButtonModel>()
+            }, dialogType);
+
+            if (respone.code == 'y') {
+              this.changePlayerMoney(player, -1 * (tile.price ?? 0));
+              tile.ownerPlayer = player;
+            }
+          }
+
+          break;
+        }
+        
+        case 'jail': 
+          this.message1 = 'You are in jail!';
+          break;
+      }
+
+      this.data.state = 'ready';
+    }
+  }
+
+  changePlayerMoney(player: PlayerModel, change: number) {
+    player.money += change;
+    player.lastMoneyChange = change;
   }
 
   getNextTile(tile: TileModel) {
@@ -278,7 +340,6 @@ export class BoardComponent {
   async getRandomDiceValue(sleepMs: number) {
     await this.sleep(sleepMs);
     const value = (Math.round((Math.random() * 5)) + 1) as DiceValueType;
-    console.log('value:', value);
     return value;
   }
 
@@ -289,5 +350,15 @@ export class BoardComponent {
 
   getTilePlayers(tile: TileModel) {
     return this.data.players.filter(p => p.currentTile?.id == tile.id);
+  }
+
+  async showDialog(dialogData: DialogBoxModel, dialogType: DialogType) {
+    this.dialogData = dialogData;
+    this.data.state = dialogType;
+
+    const button = await lastValueFrom(dialogData.onClick.asObservable());
+    console.log('showdialog.button:', button);
+    this.dialogData = undefined;
+    return button;
   }
 }

@@ -16,10 +16,16 @@ $board-height: 1100px;
             width: 110px;
             height: 150px;
             margin: 0px;
-            cursor: pointer;
 
-            &:hover {
-                border: 2px solid black;
+            &.has-corner {
+                width: 150px;
+            }
+
+            &:not(.last-tile) {
+                cursor: pointer;
+                &:hover {
+                    border: 2px solid orange;
+                }
             }
         }
         
@@ -31,11 +37,6 @@ $board-height: 1100px;
             top: 792px;
 
             .app-tile {
-                &:first-child,
-                &:last-child {
-                    width: 150px;
-                }
-
                 &:first-child {
                     .tile-body {
                         padding-top: 10px;
@@ -65,7 +66,6 @@ $board-height: 1100px;
                 &:nth-child(8) {
                     left: 0px;
                     top: 0px;
-                    width: 150px;
                     .tile-body {
                         padding-top: 10px;
                         rotate: 45deg;
@@ -113,8 +113,6 @@ $board-height: 1100px;
                 transform: rotateZ(180deg);
 
                 &:nth-child(12) {
-                    width: 150px;
-                    height: 150px;
                     transform: rotateZ(180deg);
                     .tile-body {
                         padding-top: 10px;
@@ -132,7 +130,6 @@ $board-height: 1100px;
             
             .app-tile {
                 position: absolute;
-                
                 top: -20px;
                 transform: rotateZ(270deg);
 
@@ -184,7 +181,7 @@ $board-height: 1100px;
                 justify-content: center;
                 align-items: center;
             }
-            
+
             .message1{
                 margin-top: 15px;
                 text-align: center;
@@ -214,7 +211,6 @@ $board-height: 1100px;
             position: absolute;
             bottom: 250px;
             left: 250px;
-            // border: 2px solid white;
             width: 200px;
             height: 120px;
             border-radius: 8px;
@@ -226,30 +222,14 @@ $board-height: 1100px;
     }
 }
 
-.player-list {
+.last-tile {
     position: absolute;
-    border: 1px solid white;
-    padding: 10px;
-    right: 190px;
-    bottom: 180px;
-    color: lightgray;
-    width: 250px;
+    right: 200px;
+    bottom: 220px;
+}
 
-    .player {
-        display: flex;
-        flex-direction: row;
-
-        .player-initials {
-            font-weight: bold;
-            flex: 0 0 50px;
-        }
-
-        .player-name {
-            flex: 1;
-        }
-
-        &.playing {
-            color: yellow;
-        }
-    }
+app-player-list {
+    position: absolute;
+    left: 35%;
+    bottom: 210px;
 }

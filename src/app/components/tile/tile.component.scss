@@ -2,11 +2,19 @@
     display: flex;
     flex-direction: row;
 
-    background-color: orange;
+    background: rgb(255,165,0);
+    background: linear-gradient(180deg, rgba(255,229,0,1) 9%, rgba(255,165,0,1) 83%);
+    
     border: 2px solid white;
 
-    &.has-player {
-        background-color: rgb(255, 212, 132);
+    &:not(.hide-players) {
+        &.has-player {
+            background: greenyellow;
+        }
+    }
+
+    &.type-start {
+        background:rgb(29, 189, 29);
     }
 
     .tile-body {
@@ -49,6 +57,39 @@
             justify-content: center;
             align-items: center;
         }
+    }
+
+    .current-tile {
+        visibility: hidden;
+        position: absolute;
+        top: -20px;
+        height: 24px;
+        margin-left: -2px;
+        width: 104px;
+        padding: 4px;
+        text-align: center;
+
+        img {
+            width: 40px;
+        }
+    }
+
+    &.current {
+        .current-tile {
+            visibility: visible;
+        }
+    }
+
+    .owner-player {
+        position: absolute;
+        top: -33px;
+        height: 24px;
+        margin-left: -2px;
+        width: 104px;
+        padding: 4px;
+        text-align: center;
+        border: 2px solid white;
+        border-radius: 6px 6px 0px 0px;
     }
 
     .players {

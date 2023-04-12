@@ -11,10 +11,10 @@
 
     &.back {
         flex: 1;
+        display: flex;
+        flex-direction: row;
         background-color: white;
         color: black;
-        justify-content: center;
-        align-items: center;
 
         &.destiny {
             background-color: white;
@@ -22,6 +22,18 @@
 
         &.bond {
             background-color: white;
+        }
+
+        .card-body {
+            flex: 1;
+            border: 1px solid lightgray;
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            padding: 16px 8px 16px 8px;
+            justify-content: center;
+            align-items: center;
         }
     }
 

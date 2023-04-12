@@ -1,11 +1,28 @@
 import { CardModel } from "./cardModel";
 import { DiceModel } from "./diceModel";
-import { MoneyModel } from "./moneyModel";
 import { PlayerModel } from "./playerModel";
 import { TileModel } from "./tileModel";
 
+export type DialogType = 
+        | 'land-buy-dialog'
+        | 'corp-buy-dialog'
+        | 'bond-dialog'
+        | 'destiny-dialog'
+        ;
+
+export type BoardState = 
+        | 'ready'
+        | 'dice-rolling'
+        | 'moving'
+        | 'land-buy-dialog'
+        | 'corp-buy-dialog'
+        | 'bond-dialog'
+        | 'destiny-dialog'
+        | 'finished'
+        ;
+
 export interface BoardModel {
-    monies: MoneyModel[];
+    state: BoardState;
 
     tiles: {
         all: TileModel[];

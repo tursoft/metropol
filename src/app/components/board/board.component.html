@@ -2,25 +2,29 @@
 
     <div class="tiles-left">
         <app-tile *ngFor="let tile of data.tiles.left"
-                  [data]="tile">
+                  [data]="tile"
+                  [current]="lastTile==tile">
         </app-tile>
     </div>
 
     <div class="tiles-top">
         <app-tile *ngFor="let tile of data.tiles.top"
-                  [data]="tile">
+                  [data]="tile"
+                  [current]="lastTile==tile">
         </app-tile>
     </div>
 
     <div class="tiles-right">
         <app-tile *ngFor="let tile of data.tiles.right"
-                 [data]="tile">
+                  [data]="tile"
+                  [current]="lastTile==tile">
         </app-tile>
     </div>
 
     <div class="tiles-bottom">
         <app-tile *ngFor="let tile of data.tiles.bottom"
-                 [data]="tile">
+                  [data]="tile"
+                  [current]="lastTile==tile">
         </app-tile>
     </div>
 
@@ -28,7 +32,8 @@
         <div class="game-title">
             METROPOL
         </div>
-        <div class="dices">
+    
+        <div class="dices" *ngIf="!dialogData">
             <app-dice
                   *ngFor="let dice of data.dices"
                   [value]="dice.value"
@@ -36,14 +41,18 @@
                   (clicked)="diceClicked()">
             </app-dice>
         </div>
-        
-        <div class="message1">
+
+        <div class="message1" *ngIf="!dialogData && (message1 ?? '')!=''">
             {{ message1 }}
         </div>
 
-        <div class="message2">
+        <div class="message2" *ngIf="!dialogData && (message2 ?? '')!=''">
             {{ message2 }}
         </div>
+
+        <app-dialog-box *ngIf="dialogData"
+                    [data]="dialogData">
+        </app-dialog-box>
     </div>
 
     <div class="destiny-cards">
@@ -58,11 +67,13 @@
         </app-card>
     </div>
 
-    <div class="player-list">
-        <div [ngClass]="{ 'player': true, 'playing': player.playing }"
-             *ngFor="let player of data.players">
-             <span class="player-initials">{{ player.initials }}</span>
-             <span class="player-name">{{ player.name }}</span>
-        </div>
-    </div>
+    <app-tile *ngIf="lastTile"
+              class="last-tile"
+              [data]="lastTile"
+              [hidePlayers]="true">
+    </app-tile>
+
+    <app-player-list [players]="data.players">
+    </app-player-list>
+
 </div>

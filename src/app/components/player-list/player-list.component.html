@@ -1,0 +1,34 @@
+<div [ngClass]="{ 'player': true, 'playing': player.playing }"
+     *ngFor="let player of players; let i=index">
+
+    <span class="player-no">
+        {{ i+1 }}
+    </span>
+
+    <span class="player-initials" [ngStyle]="{'color': player.color}">
+        {{ player.initials }}
+    </span>
+
+    <span class="player-name">
+        {{ player.name }}
+    </span>
+
+    <span [ngClass]="{
+            'player-money': true,
+            'money-zero': !player.money,
+            'money-positive': player.money>0,
+            'money-negative': player.money<0
+          }">
+        {{ player.money | number: '1.0-0' }} TL
+    </span>
+
+    <span [ngClass]="{
+            'player-money-change': true,
+            'money-zero': !player.lastMoneyChange,
+            'money-positive': (player.lastMoneyChange ?? 0)>0,
+            'money-negative': (player.lastMoneyChange ?? 0)<0
+          }">
+        {{ (player.lastMoneyChange ?? 0)>0 ? '+' : '' }}{{ player.lastMoneyChange | number: '1.0-0' }} TL
+    </span>
+
+</div>

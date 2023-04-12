@@ -1,7 +1,14 @@
-import { MoneyModel } from "./moneyModel";
 import { TileModel } from "./tileModel";
 
-export type ColorType = 'black' | 'red' | 'blue' | 'white' | 'green' | 'yellow' | 'purple';
+export type ColorType = 
+            | 'orange'
+            | 'darkTurquoise'
+            | 'blue'
+            | 'teal'
+            | 'green'
+            | 'darkKhaki'
+            | 'magenta'
+            ;
 
 export interface PlayerModel {
     id: number;
@@ -10,5 +17,6 @@ export interface PlayerModel {
     color: ColorType;
     playing?: boolean;
     currentTile?: TileModel;
-    money: MoneyModel[];
+    money: number;
+    lastMoneyChange?: number;
 }

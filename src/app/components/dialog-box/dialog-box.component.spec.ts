@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MoneyListComponent } from './money-list.component';
+import { DialogBoxComponent } from './dialog-box.component';
 
-describe('MoneyListComponent', () => {
-  let component: MoneyListComponent;
-  let fixture: ComponentFixture<MoneyListComponent>;
+describe('DialogBoxComponent', () => {
+  let component: DialogBoxComponent;
+  let fixture: ComponentFixture<DialogBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MoneyListComponent ]
+      declarations: [ DialogBoxComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MoneyListComponent);
+    fixture = TestBed.createComponent(DialogBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

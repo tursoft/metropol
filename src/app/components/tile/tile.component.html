@@ -4,7 +4,7 @@
          [ngClass]="{'hide_inline': !data.color}">
     </div>
     
-    <div class="tile-title">
+    <div class="tile-title" [ngStyle]="{'color': data.color}">
         {{ data.title }}
     </div>
     
@@ -12,12 +12,20 @@
         <img [src]="'/assets/icons/' + data.icon">
     </div>
 
-    <div class="tile-price" [ngClass]="{'hide_inline': !data.price}">
-        {{ data.price }} TL
+    <div class="tile-price" [ngClass]="{'hide_inline': data.type=='start' || !data.price}">
+        {{ data.price | number: '1.0-0' }} TL
     </div>
     
+    <div class="owner-player" *ngIf="data.ownerPlayer"
+         [ngStyle]="{'background': data.ownerPlayer.color, 'color': 'white' }">
+        {{ data.ownerPlayer.initials }}
+    </div>
 
-    <div class="players">
+    <div class="current-tile" *ngIf="!hidePlayers">
+        <img src="/assets/arrow-down.png">
+    </div>
+
+    <div class="players" *ngIf="!hidePlayers">
         <app-player
              *ngFor="let player of data.players" 
              [data]="player">

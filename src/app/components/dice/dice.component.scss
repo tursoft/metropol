@@ -1,5 +1,5 @@
 :host {
-    &.normal {
+    &.ready {
         .dice {
             background-color: white;
             cursor: pointer;
@@ -11,7 +11,7 @@
 
     &.disabled {
         .dice {
-            background-color: lightskyblue;
+            background-color: orange;
         }
     }
 

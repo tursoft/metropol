@@ -1,0 +1,42 @@
+:host {
+    border: 3px solid white;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .message {
+        flex: 1;
+        // font-weight: bold;
+        font-size: 18px;
+        // text-transform: uppercase;
+        text-align: center;
+        color: white !important;
+        // display: flex;
+        // align-items: center;
+        padding: 10px 0px 20px 0px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .button {
+            font-size: 14px;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            background-color: rgb(232, 174, 67);
+            color: black;
+            cursor: pointer;
+            margin: 2px;
+            border-radius: 4px;
+    
+            &:hover {
+                background-color: white;
+                color: orange;
+            }
+        }
+    }
+}
