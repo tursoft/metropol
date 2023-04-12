@@ -86,41 +86,41 @@ export class BoardComponent {
       {
         id: 1,
         color: 'orange',
-        name: 'Mehmet Çınar',
-        initials: 'MÇ',
-        money: 250000
+        name: 'Player 1',
+        initials: 'P1',
+        money: 100000
       },
 
       {
         id: 2,
         color: 'darkTurquoise',
-        name: 'Muhammet Turşak',
-        initials: 'MT',
-        money: 250000
+        name: 'Player 2',
+        initials: 'P2',
+        money: 100000
       },
 
       {
         id: 3,
         color: 'green',
-        name: 'Yağız Burak',
-        initials: 'YB',
-        money: 250000
+        name: 'Player 3',
+        initials: 'P3',
+        money: 100000
       },
 
       {
         id: 4,
         color: 'magenta',
-        name: 'Özlem Turşak',
-        initials: 'ÖT',
-        money: 250000
+        name: 'Player 4',
+        initials: 'P4',
+        money: 100000
       },
 
       {
         id: 5,
         color: 'darkKhaki',
-        name: 'Bekir Alp',
-        initials: 'BA',
-        money: 250000
+        name: 'Player 5',
+        initials: 'P5',
+        money: 100000
       }
     ],
 
