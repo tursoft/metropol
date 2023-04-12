@@ -173,6 +173,7 @@ $board-height: 1100px;
                 font-weight: bold;
                 text-transform: uppercase;
                 color: orange;
+                margin-bottom: 20px;
             }
         
             .dices {
@@ -182,16 +183,16 @@ $board-height: 1100px;
                 align-items: center;
             }
 
-            .message1{
+            .message1 {
                 margin-top: 15px;
                 text-align: center;
                 color: wheat;
                 font-size: 18px;
             }
 
-            .message2{
+            .message2 {
                 text-align: center;
-                color: orange;
+                color: white;
                 font-weight: bolder;
                 font-size: 20px;
                 text-transform: uppercase; 
@@ -209,7 +210,7 @@ $board-height: 1100px;
 
         .bond-cards {
             position: absolute;
-            bottom: 250px;
+            top: 250px;
             left: 250px;
             width: 200px;
             height: 120px;
@@ -220,16 +221,23 @@ $board-height: 1100px;
             cursor: pointer;
         }
     }
-}
 
-.last-tile {
-    position: absolute;
-    right: 200px;
-    bottom: 220px;
-}
-
-app-player-list {
-    position: absolute;
-    left: 35%;
-    bottom: 210px;
+    .last-tile {
+        position: absolute;
+        right: 200px;
+        bottom: 220px;
+        border-radius: 6px;
+        border-top: 4px solid white !important;
+    
+        .tile-body {
+            border-radius: 6px;
+            overflow: hidden;
+        }
+    }
+    
+    app-player-list {
+        position: absolute;
+        left: 35%;
+        bottom: 210px;
+    }
 }

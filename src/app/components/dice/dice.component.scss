@@ -4,7 +4,7 @@
             background-color: white;
             cursor: pointer;
             &:hover {
-                border: 2px solid black;
+                border: 4px solid orange;
             }
         }
     }
@@ -27,7 +27,7 @@
         height: 40px;
         border-radius: 10%;
         margin-right : 8px;
-        border: 2px solid transparent;
+        border: 4px solid transparent;
     }
 
     .dot {
