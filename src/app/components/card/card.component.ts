@@ -9,36 +9,28 @@ import { BaseComponent } from '../base-component';
 })
 export class CardComponent extends BaseComponent implements OnInit {
 
-
   get data() { return this.getProperty<CardModel>('data', { group: 'bond', id: -1, side: 'front', type: 'bonus', text: '' }); };
-  @Input() set data(value: CardModel) { this.setProperty<CardModel>('data', value); };
+  @Input() set data(value: CardModel) { 
+    this.setProperty<CardModel>('data', value, true); 
+  };
 
   @HostBinding('class.app-card') app_card: boolean = true;
 
-  @HostBinding('class.destiny') app_destiny: boolean = true;
-  @HostBinding('class.bond') app_bond: boolean = false;
+  @HostBinding('class.destiny') get destiny() { return this.data.group == 'destiny'; }
+  @HostBinding('class.bond') get bond() { return this.data.group == 'bond'; }
 
-  @HostBinding('class.front') app_front: boolean = true;
-  @HostBinding('class.back') app_back: boolean = false;
+  @HostBinding('class.front') get front() { return this.data.side == 'front'; }
+  @HostBinding('class.back') get back() { return this.data.side == 'back'; }
 
   constructor() {
     super()
   }
   
   ngOnInit(): void {
-    this.updateView();
   }
 
   override onPropertyChanged(name: string, value: any): void {
-    this.updateView();
-  }
-
-  updateView() {
-    this.app_destiny = this.data.group == 'destiny';
-    this.app_bond = this.data.group == 'bond';
-
-    this.app_front = this.data.side == 'front';
-    this.app_back = this.data.side == 'back';
+    console.log('onPropertyChanged:', { name, value } );
   }
 
   getCardLogo() {

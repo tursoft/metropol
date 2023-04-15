@@ -28,6 +28,7 @@ export type TileType =
 export interface TileModel {
     id: number;
     title: string;
+    code?: string;
     type: TileType;
     corner?: boolean;
     group?: string;

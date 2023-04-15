@@ -12,8 +12,8 @@ export abstract class BaseComponent implements OnDestroy {
     constructor() {
     }
 
-    setProperty<T>(name: string, value: T, event?: EventEmitter<T>) {
-        if (this.propValues[name] != value) {
+    setProperty<T>(name: string, value: T, force: boolean = false, event?: EventEmitter<T>) {
+        if (force || this.propValues[name] != value) {
             this.propValues[name] = value;
             event?.next(value);
             this.onPropertyChanged(name, value);

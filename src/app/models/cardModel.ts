@@ -1,4 +1,4 @@
-export type CardType = 'fine' | 'bonus' | 'transport' | 'other';
+export type CardType = 'fine' | 'bonus' | 'move' | 'other';
 export type CardGroup = 'destiny' | 'bond';
 export type CardSide = 'front' | 'back';
 
@@ -7,8 +7,9 @@ export interface CardModel {
     text: string;
     group: CardGroup;
     type: CardType;
-    side: CardSide;
+    side?: CardSide;
+    money?: number;
     code?: string;
-    fineAmount?: number;
-    bonusAmount?: number;
+    tileCode?: string;
+    tileCount?: number;
 }
